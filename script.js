@@ -33,8 +33,8 @@ SubmitBtn.addEventListener("click", function() {
 const welcome = document.createElement("div");
 welcome.innerHTML = `<div class = "welcome-body">
  <button class="closebtn-1"><i class="fa-solid fa-xmark"></i></button>
-<div class = "welcometext" style = "color : #ff1340;"><pre>welcome Army ,  
-let join tour with us .</pre></div>
+<div class = "welcometext" style = "color : #ff1340;">welcome Army ,  
+let join tour with us </div>
 </div>`;
 document.body.append(welcome);
 SignInForm.style.display = "none";

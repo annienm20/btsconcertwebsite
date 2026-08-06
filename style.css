@@ -232,19 +232,19 @@ margin: 50px 20px 50px 50px;
     width: 100%;
     height: 100vh;
      position: relative;
-     backdrop-filter: blur(20px);
+     backdrop-filter: blur(20px);display: flex;
+         justify-content: center;
+         align-items: center;
 }
 .welcometext{
-    width:60%;
-    height: auto;  
-    position: absolute; 
-      top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(0, 0, 0);
+  width: 90%;
+    max-width: 500px;
+    color: #ff1340;
     text-align: center;
-    font-size: 35px;
+    font-size: 28px;
     text-transform: uppercase;
+    font-family: inherit;
+    word-break: break-word;
 }
 .closebtn-1{
     position: absolute;
