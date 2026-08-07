@@ -22,12 +22,27 @@ const SignInbtn = document.querySelector(".login-content");
 const SignInForm =  document.querySelector(".form-content");
 const CloseBtn = document.querySelector(".closebtn");
 const SubmitBtn = document.querySelector(".submit-btn");
+const SignUpForm = document.querySelector(".signup-content");
+const CloseBtn2 = document.querySelector(".closebtn-2");
+const opensignup =  document.querySelector(".OpenSignUp");
+const opensignin =  document.querySelector(".OpenSignIn");
 
+opensignin.addEventListener("click" , () => {
+SignUpForm.style.display = "none";
+    SignInForm.style.display = "block";
+});
+opensignup.addEventListener("click" , () => {
+SignInForm.style.display = "none";
+    SignUpForm.style.display = "block";
+});
 SignInbtn.addEventListener("click" , () => {
 SignInForm.style.display = "block";
 });
 CloseBtn.addEventListener("click", () => {
 SignInForm.style.display = "none";
+});
+CloseBtn2.addEventListener("click", () => {
+SignUpForm.style.display = "none";
 });
 SubmitBtn.addEventListener("click", function() {
 const welcome = document.createElement("div");
