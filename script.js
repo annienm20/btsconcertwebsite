@@ -59,3 +59,9 @@ closeWelcome.addEventListener("click", () => {
 welcome.style.display = "none";
 });
 });
+//slider
+const prebtn = document.querySelector(".previous-btn");
+const nextbtn = document.querySelector(".next-btn");
+prebtn.addEventListener("click", function() {
+    
+})
