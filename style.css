@@ -458,12 +458,13 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    
     flex-direction: column;
+  
    
     }
 .bts-member-title{
-    color: white;
+    
     text-transform:uppercase;
 font-variant: normal;
     font-size: 40px;
@@ -489,7 +490,7 @@ height: 100%;
   object-fit: cover;
 }
 .bts-details{
-    color: #ffffff;
+   
    text-align: center;
    margin: 30px 5px 30px 5px;
     width: 100%;
@@ -548,17 +549,32 @@ height: 100%;
 /*abum-details*/
 .ablum-details{
     width: 100%;
-    height: auto;
+     height: auto;
     overflow: hidden;
+   
+}
+.tracklist{
+    width: 70%;
+    z-index: 10;
+    margin: 80px 0px 80px 0px;
+    box-shadow: 0px 0px 15px black;
+    border-radius: 20px;
+}
+.tracklist img{
+    width: 100%;
+    border-radius: 20px;
 }
 .ablum-details-body{
     width: 100%;
     position: relative;
-height: 130vh;
+ height: 100%;display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .disc-1{
-    width: 50%;
-    height:450px ;
+    width: 60%;
+    height:550px ;
     position: absolute;
     left: -252px;
     top: -140px;
@@ -576,10 +592,11 @@ height: 130vh;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 .disc-2{
-    width: 60%;
-    height:550px ;
+    width: 70%;
+    height:590px ;
     position: absolute;
     right: -330px;
     top: 140px;
@@ -597,19 +614,21 @@ height: 130vh;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .disc-3 img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 .disc-3{
-    width: 40%;
-    height:400px ;
+    width: 55%;
+    height:450px ;
     position: absolute;
     left: -230px;
-    top: 500px;
+    bottom:-200px;
  animation: continuousSpin3 2s linear infinite;
 }
 @keyframes continuousSpin3 {
@@ -620,33 +639,161 @@ height: 130vh;
         transform: rotate(360deg);
     }
 }
-@media (max-width: 768px) {
-    .ablum-details-body {
-        height: 100vh;
-        min-height: 600px; /* Reduced parent height for mobile viewports */
-    }
 
-    /* Disc 1: Scale down & bring closer to screen edge */
-    .disc-1 {
-        width: 220px;
-        height: 220px;
-        left: -100px;
-        top: -30px;
+@media (max-width:800px) {
+    .disc-3{
+          width: 70%;
+    height:450px ;
+        left: -190px;
+    bottom:-150px;
     }
+    .disc-2{
+          width: 80%;
+    height:590px ;
+   
+    right: -230px;
+    top: 140px;
+    }
+    .disc-1{
+           width: 60%;
+    height:550px ;
+    
+    left: -202px;
+    top: -250px;
+    }
+}
+@media (max-width:600px) {
+    .tracklist{
+        width: 80%;
+    }
+    .disc-3{
+          width: 80%;
+    height:450px ;
+        left: -190px;
+    bottom:-150px;
+    }
+    .disc-2{
+          width: 90%;
+    height:590px ;
+   
+    right: -230px;
+    top: 50px;
+    }
+    .disc-1{
+           width: 60%;
+    height:420px ;
+    left: -145px;
+    top: -140px;
+    }
+}
+@media (max-width:420px) {
+    .disc-3{
+          width: 80%;
+    height:400px ;
+        left: -150px;
+    bottom:-150px;
+    }
+    .disc-2{
+          width: 90%;
+    height:520px ;
+   
+    right: -170px;
+    top: 50px;
+    }
+    .disc-1{
+           width: 70%;
+    height:380px ;
+    left: -120px;
+    top: -140px;
+    }
+}
+.ablum-detail-tiltle{
+    font-size: 60px;
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+.listen-btn{
+    width: auto;
+    padding: 20px 50px 20px 50px;
+    border-radius: 50px;
+    background-color: #e00f37;
+    border: none;
+  transition: transform 0.5s ease-in-out ;
+  margin-bottom: 50px;
+ 
+}
+.listen-btn a{
+    text-decoration: none;
+     font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+    
+}
+.listen-btn:hover{
+      transform: translateY(-30px)scale(1.1);
+      box-shadow: 0px 10px 8px rgba(5, 5, 5, 0.664) ;
+}
+.listen-btn:active{
+    
+    background-color: white;
+}
+.listen-btn:active a{
+color: #e00f37;
+}
+/*gallery*/
+.gallery-details{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.gallery-detail-tiltle{
+    width: 100%;
+    font-size: 60px;
+    text-transform: uppercase;
+    margin-top: 100px;
+    text-align: center;
+}
+.view-more-btn{
+    width: auto;
+    padding: 20px 50px 20px 50px;
+    border-radius: 50px;
+    background-color: #e00f37;
+    border: none;
+  transition: transform 0.5s ease-in-out ;
+  margin-bottom: 50px;
+ 
+}
+.view-more-btn a{
+    text-decoration: none;
+     font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+    
+}
+.view-more-btn:hover{
+      transform: translateY(-30px)scale(1.1);
+      box-shadow: 0px 10px 8px rgba(5, 5, 5, 0.664) ;
+}
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    width: 95%;
+    margin: 70px;
+}
 
-    /* Disc 2: Scale down & bring closer to screen edge */
-    .disc-2 {
-        width: 260px;
-        height: 260px;
-        right: -120px;
-        top: 180px;
-    }
+.gallery-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter:brightness(40%);
+    transition: transsform 0.3s ease, filter 0.3s ease;
+}
+.gallery-images img:hover{
+filter: brightness(100%);
 
-    /* Disc 3: Scale down & bring closer to screen edge */
-    .disc-3 {
-        width: 200px;
-        height: 200px;
-        left: -90px;
-        top: 380px;
-    }
 }

@@ -124,5 +124,4 @@ const i = 0;
     </div>`;
     btsMember.appendChild(member_box);
 });
-const btshover = document.querySelector(".member-box-body");
-btshover.addEventListener("")
+
