@@ -29,7 +29,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 10px 20px;
+    padding: 6px 14px;
 }
 
 .logo {
@@ -443,5 +443,210 @@ label {
         height: 50vh; /* Reduces frame height on mobile to prevent extreme cropping */
     }
 }
+@media (max-width: 400px) {
+    .slider-part {
+        height: 45vh; /* Reduces frame height on mobile to prevent extreme cropping */
+    }
+}
+
 
 /*slider*/
+/*btsdeatils*/
+.bts-member-details{
+    width: 100%;
+     height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    flex-direction: column;
+   
+    }
+.bts-member-title{
+    color: white;
+    text-transform:uppercase;
+font-variant: normal;
+    font-size: 40px;
+    margin-top: 60px;
+}
+.bts-members {
+    width: 100%;
+    height: auto;
+  display:grid ;  
+  grid-template-columns: auto auto auto auto; 
+  row-gap: 40px;   
+  column-gap: 30px;
+  margin: 80px 0px 60px 0px;
+}
+.bts-image{
+    width: 100%;
+ height: 300px;
+   
+}
+.bts-image img{
+width: 100%;
+height: 100%;
+  object-fit: cover;
+}
+.bts-details{
+    color: #ffffff;
+   text-align: center;
+   margin: 30px 5px 30px 5px;
+    width: 100%;
+}
+
+.bts-name{
+    text-transform: uppercase;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.bts-age{
+     font-size: 23px;
+}
+.member-box-body {
+    box-sizing: border-box;
+    padding: 10px;                       /* Set padding permanently */
+    border: 2px solid transparent;        /* Reserve border space so dimensions don't change */
+    border-radius: 10px;
+    
+    /* Place transition on base class so it animates smoothly both in and out */
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.member-box-body:hover{
+    border: 2px solid #e00f37;
+    padding: 10px;
+    border-radius: 10px;
+    transform: translateY(-30px) ;
+    transition: transform 1s ease;
+    background-color: #e00f37;
+    box-shadow: 0px 0px 10px #ff1340;
+}
+@media (max-width:950px) {
+  .bts-members {
+ 
+  display:grid ;  
+  grid-template-columns: auto auto auto ; 
+ 
+}
+}
+@media (max-width:750px) {
+  .bts-members {
+  display:grid ;  
+  grid-template-columns: auto auto  ; 
+
+ 
+}
+}
+@media (max-width:500px) {
+  .bts-members {
+  display:grid ;  
+  grid-template-columns: auto   ; 
+  width: 80%;
+  row-gap: 10px;
+}
+}
+/*abum-details*/
+.ablum-details{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.ablum-details-body{
+    width: 100%;
+    position: relative;
+height: 130vh;
+}
+.disc-1{
+    width: 50%;
+    height:450px ;
+    position: absolute;
+    left: -252px;
+    top: -140px;
+ animation: continuousSpin1 2s linear infinite;
+}
+@keyframes continuousSpin1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.disc-2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.disc-2{
+    width: 60%;
+    height:550px ;
+    position: absolute;
+    right: -330px;
+    top: 140px;
+ animation: continuousSpin2 2s linear infinite;
+}
+@keyframes continuousSpin2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.disc-1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.disc-3 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.disc-3{
+    width: 40%;
+    height:400px ;
+    position: absolute;
+    left: -230px;
+    top: 500px;
+ animation: continuousSpin3 2s linear infinite;
+}
+@keyframes continuousSpin3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@media (max-width: 768px) {
+    .ablum-details-body {
+        height: 100vh;
+        min-height: 600px; /* Reduced parent height for mobile viewports */
+    }
+
+    /* Disc 1: Scale down & bring closer to screen edge */
+    .disc-1 {
+        width: 220px;
+        height: 220px;
+        left: -100px;
+        top: -30px;
+    }
+
+    /* Disc 2: Scale down & bring closer to screen edge */
+    .disc-2 {
+        width: 260px;
+        height: 260px;
+        right: -120px;
+        top: 180px;
+    }
+
+    /* Disc 3: Scale down & bring closer to screen edge */
+    .disc-3 {
+        width: 200px;
+        height: 200px;
+        left: -90px;
+        top: 380px;
+    }
+}

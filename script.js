@@ -1,12 +1,14 @@
+
+
 const loginfrom = document.querySelector(".login-icon");
 const darkmode = document.querySelector(".sun-icon");
-const wholecontent = document.body;
+
 const barsbtn = document.querySelector(".bars");
 const NavListItems =  document.querySelector(".nav-lists-items");
 
 darkmode.addEventListener("click" , function() {
     darkmode.classList.toggle("darkmodeanimation");
- 
+ const wholecontent = document.body;
     wholecontent.classList.toggle("DarkModeOn");
      if (wholecontent.classList.contains("DarkModeOn")) {
         darkmode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
@@ -59,9 +61,68 @@ closeWelcome.addEventListener("click", () => {
 welcome.style.display = "none";
 });
 });
-//slider
-const prebtn = document.querySelector(".previous-btn");
-const nextbtn = document.querySelector(".next-btn");
-prebtn.addEventListener("click", function() {
-    
-})
+
+//menmber-details
+const btsMembersdetail = [
+  {
+    name: "RM",
+    age: 32,
+    position: "Main Rapper",
+    image: "image/rm.jpg"
+  },
+  {
+    name: "Jin",
+    age: 33,
+    position: "Vocals",
+    image: "image/jin.jpg"
+  },
+  {
+    name: "SUGA",
+    age: 33,
+     position: "Lead Rapper",
+    image: "image/suga.jpg"
+  },
+  {
+    name: "J-Hope",
+    age: 32,
+    position: "Rapper",
+    image: "image/j-hope.jpg"
+  },
+  {
+    name: "Jimin",
+    age: 31,
+    position: "Vocalist",
+    image: "image/jimin.jpg"
+  },
+  {
+    name: "V",
+    age: 30,
+    position: "Vocals",
+    image: "image/v.jpg"
+  },
+  {
+    name: "Jungkook",
+    age: 28,
+    position: "Vocals",
+    image: "image/jungkook.jpg"
+  }
+];
+
+const btsMember = document.querySelector(".bts-members");
+const i = 0;
+ btsMembersdetail.forEach(function(member)
+ {
+    const member_box = document.createElement("div");
+   
+    member_box.innerHTML = `<div class = "member-box-body">
+    <div class = "bts-image">
+    <img src ="${member.image}"></div>
+    <div class = "bts-details">
+    <div class= "bts-name">${member.name} (${member.position})</div>
+    <div class = "bts-age">${member.age}</div>
+    </div>
+    </div>`;
+    btsMember.appendChild(member_box);
+});
+const btshover = document.querySelector(".member-box-body");
+btshover.addEventListener("")
