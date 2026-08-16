@@ -124,4 +124,38 @@ const i = 0;
     </div>`;
     btsMember.appendChild(member_box);
 });
+// JavaScript
+const galleryImagesDivs = document.querySelectorAll(".gallery-images div");
+const galleryImages = document.querySelector(".gallery-images");
 
+galleryImagesDivs.forEach((div) => {
+  div.addEventListener("click", function (e) {
+    // Prevent triggering if close button is clicked
+    if (e.target.classList.contains("close-btn")) return;
+
+    // 1. Mark parent container and activate current div
+    galleryImages.classList.add("has-active");
+    
+    galleryImagesDivs.forEach((item) => item.classList.remove("active"));
+    const activeDiv = e.currentTarget;
+    activeDiv.classList.add("active");
+
+    // 2. Add close button if not present
+    if (!activeDiv.querySelector(".close-btn")) {
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "close-btn";
+      closeBtn.innerHTML = "&times;";
+
+      // 3. Reset gallery when close button is clicked
+      closeBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        
+        galleryImages.classList.remove("has-active");
+        activeDiv.classList.remove("active");
+        closeBtn.remove();
+      });
+
+      activeDiv.appendChild(closeBtn);
+    }
+  });
+});
