@@ -775,6 +775,158 @@ color: #e00f37;
   box-shadow: 0px 10px 20px rgba(5, 5, 5, 0.4);
 }
 
+.site-footer {
+    background-color: black;
+    color: #333333;
+    padding: 60px 20px 20px 20px;
+    font-family: sans-serif;
+    border-top: 1px solid #e1e1e6;
+    position: relative;
+    /* Forces footer layer to stack safely over your fixed background photo */
+    z-index: 2; 
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Perfectly splits your 4 columns using an asymmetrical tracking metric */
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+    gap: 40px;
+}
+
+/* Header Text Styling for Footer Sub-sections */
+.footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #111111;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   COLUMN UNIQUE PROPERTY DEFINITIONS
+   ========================================================================== */
+
+/* Column 1: Brand Content Context Wrapper */
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #e00f37; /* CHANGED: Replaced purple with tour branding red color */
+}
+.footer-logo span {
+    color: #111111; /* Swapped color to dark contrast for logo dot accent */
+}
+.footer-text {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #555555;
+}
+
+/* Column 2: Navigation Links Layout Alignment */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+.footer-links ul li a {
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+.footer-links ul li a:hover {
+    color: #e00f37; /* CHANGED: Hover states follow branding red color */
+}
+
+/* Column 3: Social Media Icon Matrix Blocks */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    color: #ffffff;
+    background-color: #333333;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    /* Smooth translation timeline for your scaling configurations */
+    transition: all 0.3s ease; 
+}
+.social-icons a:hover {
+    background-color: #e00f37; /* CHANGED: Hover states follow branding red color */
+    scale: 1.1; /* Scales your social icons seamlessly by 10% on hover */
+}
+
+/* Column 4: Contact Coordinate Rules */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.4;
+}
+.footer-contact p i {
+    color: #e00f37; /* CHANGED: Content utility icons now use branding red color */
+    width: 16px;
+}
+
+/* ==========================================================================
+   FOOTER BOTTOM FRAMEBAR
+   ========================================================================== */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e1e6;
+    font-size: 0.85rem;
+    color: #777777;
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES (Hooks safely into your body class list check loop)
+   ========================================================================== */
+body.DarkModeOn .site-footer {
+    background-color: #121214;
+    color: #e1e1e6;
+    border-top-color: #23232a;
+}
+body.DarkModeOn .footer-column h3 {
+    color: #ffffff;
+}
+body.DarkModeOn .footer-logo span {
+    color: #ffffff; /* Swapped color to clear white contrast for logo dot accent in dark mode */
+}
+body.DarkModeOn .footer-text,
+body.DarkModeOn .footer-links ul li a,
+body.DarkModeOn .footer-contact p {
+    color: #aaaaaa;
+}
+body.DarkModeOn .footer-links ul li a:hover {
+    color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .social-icons a {
+    background-color: #23232a;
+    color: #ffffff;
+}
+body.DarkModeOn .social-icons a:hover {
+    background-color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .footer-bottom {
+    border-top-color: #23232a;
+    color: #777777;
+}
 
 
 @media (max-width: 800px) {
@@ -1009,5 +1161,19 @@ flex-direction: column;}
     .login-form p,
     .login-form a {
         font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        /* Collapses grid down instantly to a clean single column list stack for phones */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .site-footer {
+        padding: 40px 20px 20px 20px;
+    }
+    .footer-bottom {
+        margin-top: 30px;
     }
 }
