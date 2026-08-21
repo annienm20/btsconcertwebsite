@@ -336,6 +336,7 @@ label {
     height: calc(120vh - 80px);
     margin-top: 80px;          
     overflow: hidden;  
+    
          
 }
 
@@ -602,8 +603,9 @@ color: #e00f37;
   grid-template-columns: repeat(4, 1fr);
   width: 98%;
   height: auto;
-  margin: 120px 0;
+  margin:50px 0px 50px 0px;
   gap: 20px;
+ 
 }
 
 .gallery-images div {
@@ -626,58 +628,17 @@ color: #e00f37;
   filter: brightness(60%);
 }
 
-/* --- FULL WIDTH ACTIVE STATE --- */
-
-/* 1. Switch parent container to block mode so grid constraints vanish */
-.gallery-images.has-active {
-  display: block !important;
+.gallery-images.galleryiamgeanimation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px; /* Forces the whole parent block to your exact height */
 }
-
-/* 2. Hide all other images except the active one */
-.gallery-images.has-active div:not(.active) {
-  display: none !important;
-}
-
-/* 3. Force active div to 100% full width */
-.gallery-images div.active {
-  width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  margin: 0 auto;
-}
-
-.gallery-images div.active img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: 80vh;
-  object-fit: contain; /* Shows entire image without cropping */
-  filter: brightness(100%);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-}
-
-/* --- CLOSE BUTTON --- */
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border: 2px solid #fff;
-  font-size: 24px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99;
-}
-
-.close-btn:hover {
-  background: rgba(255, 0, 0, 0.9);
+.gallery-images.galleryiamgeanimation div img {
+    object-fit: contain;
+    transform: scale(1.2); 
+    filter: brightness(100%);/* Shows the original image completely without cropping */
 }
 
 /* --- VIEW MORE BUTTON --- */
@@ -704,7 +665,123 @@ color: #e00f37;
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0px 10px 20px rgba(5, 5, 5, 0.4);
 }
+.tour-list{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   
+}
+.tour-list-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.tour-list-tiltle {
+  width: 100%;
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 30px;
+ 
+}
+
+.tour-list-details>div{
+    width: 95%;
+    
+}
+.tour-contents{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px 15px 0px;
+    align-items: center;
+    border: 1px solid;
+   padding: 10px 20px;
+   border-radius: 10px;
+   transition: transform 0.4s ease-in-out;
+}
+.buy-ticket{
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+       border-radius: 10px;
+       border: none;
+       background-color: #e00f37;
+       color: white;
+        transition: transform 0.4s ease-in-out;
+}
+.buy-ticket:hover{
+     background-color:white;
+       color:#e00f37;
+       border: 1px solid #e00f37;
+       transform: scale(1.1);
+       box-shadow: 0px 0px 3px #e00f37;
+}
+.date{
+  text-transform: uppercase;
+    font-size: 20px;
+    font-weight:bold;
+   
+    margin-bottom: 2px;
+}
+.country-name{
+  text-transform: uppercase;
+    font-size: 22px;
+    font-weight:bold;
+    color: #e00f37;
+    margin-bottom: 2px;
+}
+.stadium-name{
+  text-transform: uppercase;
+    font-size: 23px;
+    font-weight:bold;
+   
+    margin-bottom: 2px;
+}
+.tour-contents:hover{
+    box-shadow: 0px 0px 5px rgb(97, 97, 97);
+    border: none;
+    transform: scale(1.03);
+}
+
+.view-more1-btn {
+  width: auto;
+ margin-top: 20px;
+  padding: 20px 40px;
+  border-radius: 50px;
+  background-color: #e00f37;
+  border: none;
+  margin-bottom: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.view-more1-btn a {
+  text-decoration: none;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: white;
+  display: block;
+}
+
+.view-more1-btn:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0px 10px 20px rgba(5, 5, 5, 0.4);
+}
+
+
+
 @media (max-width: 800px) {
+    .gallery-images{
+        grid-template-columns: auto auto auto;
+      
+    }
     .nav-lists-items {
         position: fixed;
         top: 80px;
@@ -777,6 +854,38 @@ color: #e00f37;
     }
 }
 
+@media (max-width:670px) {
+    .gallery-images{
+        grid-template-columns: auto auto;
+        gap: 5px;
+
+    }
+    .gallery-images div {
+        height: 200px;
+    }
+}
+@media (max-width:650px) {
+    .tour-contents{
+    display: flex;
+    justify-content: space-between;
+align-items: center;
+flex-direction: column;}
+.left-content{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.right-content{
+    width: 100%;
+    text-align: center;
+      margin-bottom: 10px;
+}
+.buy-ticket{
+    width: 90%;
+}
+
+}
+
 @media (max-width:600px) {
     .tracklist{
         width: 80%;
@@ -814,6 +923,17 @@ color: #e00f37;
     
 
 }
+@media (max-width:520px) {
+     .gallery-images{
+        grid-template-columns: auto ;
+        gap: 5px;
+
+    }
+    .gallery-images div {
+        height: 300px;
+    }
+}
+
 @media (max-width:420px) {
     .disc-3{
           width: 80%;

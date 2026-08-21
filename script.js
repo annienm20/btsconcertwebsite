@@ -125,37 +125,148 @@ const i = 0;
     btsMember.appendChild(member_box);
 });
 // JavaScript
+// JavaScript Gallery Fix
 const galleryImagesDivs = document.querySelectorAll(".gallery-images div");
 const galleryImages = document.querySelector(".gallery-images");
 
-galleryImagesDivs.forEach((div) => {
-  div.addEventListener("click", function (e) {
-    // Prevent triggering if close button is clicked
-    if (e.target.classList.contains("close-btn")) return;
-
-    // 1. Mark parent container and activate current div
-    galleryImages.classList.add("has-active");
+galleryImagesDivs.forEach(galleryimg => {
+  galleryimg.addEventListener("click" , function(event) {
+    const clickedDiv = event.currentTarget;
     
-    galleryImagesDivs.forEach((item) => item.classList.remove("active"));
-    const activeDiv = e.currentTarget;
-    activeDiv.classList.add("active");
-
-    // 2. Add close button if not present
-    if (!activeDiv.querySelector(".close-btn")) {
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "close-btn";
-      closeBtn.innerHTML = "&times;";
-
-      // 3. Reset gallery when close button is clicked
-      closeBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        
-        galleryImages.classList.remove("has-active");
-        activeDiv.classList.remove("active");
-        closeBtn.remove();
-      });
-
-      activeDiv.appendChild(closeBtn);
-    }
+    // 1. Toggle the layout animation class on the parent element wrapper
+    galleryImages.classList.toggle("galleryiamgeanimation");
+    
+    // 2. Check if the parent is currently in full-width mode or normal mode
+    const isFullWidthMode = galleryImages.classList.contains("galleryiamgeanimation");
+    
+    // 3. Loop through to adjust visibility based on the state check
+    galleryImagesDivs.forEach(div => {
+      if (isFullWidthMode) {
+        // --- WE ARE OPENING THE IMAGE ---
+        if (div === clickedDiv) {
+          div.style.display = "block";
+          div.style.width = "100%";
+          div.style.height = "100%";
+        } else {
+          div.style.display = "none";
+        }
+      } else {
+        // --- WE ARE CLOSING THE IMAGE (Resetting back to normal 3-columns) ---
+        // Clean out all temporary JavaScript inline styles completely
+        div.style.display = "";
+        div.style.width = "";
+        div.style.height = "";
+      }
+    });
   });
 });
+
+const tourlistdetails = document.querySelector(".tour-list-details");
+const tourlists = [
+{
+  country : "Goyang, South Korea",
+  date : "April (9,11,12), 2026",
+  stadium : "Goyang Stadium",
+
+},
+{
+  country : "Tokyo, Japan",
+  date : "April (17,18), 2026",
+  stadium : "Tokyo Dome",
+ 
+},
+{
+  country : "Tampa, United States",
+  date : "April (25,26,28), 2026",
+  stadium : "Raymond James Stadium ",
+
+},
+{
+  country : "El Paso, United States ",
+  date : "May (2,3), 2026",
+  stadium : "Sun Bowl ",
+
+},
+{
+  country : "Mexico City, Mexico ",
+  date : "May (7,9,10), 2026",
+  stadium : "Estadio GNP Seguros",
+ 
+},
+{
+  country : "Stanford, United States",
+  date : "May (16,17,19), 2026",
+  stadium : "Stanford Stadium",
+ 
+},
+{
+  country : "Las Vegas, United States",
+  date : "May (23,24,27,28), 2026",
+  stadium : "Allegiant Stadium",
+ 
+},
+{
+  country : "Busan, South Korea",
+  date : "June (12,13), 2026",
+  stadium : "Busan Asiad Main Stadium",
+ 
+},
+{
+  country : "Madrid, Spain",
+  date : "June (26,27), 2026",
+  stadium : "Riyadh Air Metropolitano",
+ 
+},
+{
+  country : "Brussels, Belgium",
+  date : "July (1,2), 2026",
+  stadium : " King Baudouin Stadium",
+ 
+}
+
+
+];
+
+
+tourlists.forEach(content => {
+   const contentcreatediv = document.createElement("div");
+contentcreatediv.innerHTML = `<div class = "tour-contents">
+<div class = "left-content">
+<div class = "stadium-name">${content.stadium}</div>
+<div class = "country-name">${content.country}</div>
+<div class = "date">${content.date}</div>
+</div>
+<div class = "right-content">
+<button class = "buy-ticket">buy ticket</button>
+</div>
+</div>`;
+tourlistdetails.appendChild(contentcreatediv)});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
