@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <style>
+        * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* ==================== HEADER & NAVBAR ==================== */
+header {
+    width: 100%;
+    height: 80px;
+    background-color: #000000;
+    color: #ff1340;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+   
+    z-index: 100;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 6px 14px;
+}
+
+.logo {
+    max-width: 170px; 
+    height: 60px; 
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.nav-lists-items {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+}
+
+.nav-lists-items li a {
+    text-decoration: none;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.nav-lists-items li a:active,
+.nav-lists-items li a:hover {
+    color: #ff1340;  
+}
+
+.form-dark {
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-icon, .sun-icon, .bars {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.ham-bars {
+    display: none;
+}
+
+.login-icon:active, .sun-icon:active, .bars:active {
+    border: 1px solid #ff1340;
+    color: #ff1340;
+    transform: scale(1.1);
+}
+
+/* Dark Mode Toggle Animation */
+.darkmodeanimation {
+    transform: rotate(360deg);
+    transition: transform 1s ease-in-out;
+}
+
+.DarkModeOn {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+.tour-list-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+.tour-list-tiltle {
+  width: 100%;
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 30px;
+ 
+}
+
+.tour-list-details>div{
+    width: 95%;
+    
+}
+.tour-contents{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px 15px 0px;
+    align-items: center;
+    border: 1px solid;
+   padding: 10px 20px;
+   border-radius: 10px;
+   transition: transform 0.4s ease-in-out;
+}
+.buy-ticket{
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+       border-radius: 10px;
+       border: none;
+       background-color: #e00f37;
+       color: white;
+        transition: transform 0.4s ease-in-out;
+}
+.buy-ticket:hover{
+     background-color:white;
+       color:#e00f37;
+       border: 1px solid #e00f37;
+       transform: scale(1.1);
+       box-shadow: 0px 0px 3px #e00f37;
+}
+.date{
+  text-transform: uppercase;
+    font-size: 20px;
+    font-weight:bold;
+   
+    margin-bottom: 2px;
+}
+.country-name{
+  text-transform: uppercase;
+    font-size: 22px;
+    font-weight:bold;
+    color: #e00f37;
+    margin-bottom: 2px;
+}
+.stadium-name{
+  text-transform: uppercase;
+    font-size: 23px;
+    font-weight:bold;
+   
+    margin-bottom: 2px;
+}
+.tour-contents:hover{
+    box-shadow: 0px 0px 5px rgb(7, 7, 7);
+    border: 1px solid ;
+    transform: scale(1.03);
+}
+
+.site-footer {
+    background-color: black;
+    color: #333333;
+    padding: 60px 20px 20px 20px;
+    font-family: sans-serif;
+    border-top: 1px solid #e1e1e6;
+    position: relative;
+    /* Forces footer layer to stack safely over your fixed background photo */
+    z-index: 2; 
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Perfectly splits your 4 columns using an asymmetrical tracking metric */
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+    gap: 40px;
+}
+
+/* Header Text Styling for Footer Sub-sections */
+.footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   COLUMN UNIQUE PROPERTY DEFINITIONS
+   ========================================================================== */
+
+/* Column 1: Brand Content Context Wrapper */
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #e00f37; /* CHANGED: Replaced purple with tour branding red color */
+}
+.footer-logo span {
+    color: #111111; /* Swapped color to dark contrast for logo dot accent */
+}
+.footer-text {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #555555;
+}
+
+/* Column 2: Navigation Links Layout Alignment */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+.footer-links ul li a {
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+.footer-links ul li a:hover {
+    color: #e00f37; /* CHANGED: Hover states follow branding red color */
+}
+
+/* Column 3: Social Media Icon Matrix Blocks */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    color: #ffffff;
+    background-color: #333333;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    /* Smooth translation timeline for your scaling configurations */
+    transition: all 0.3s ease; 
+}
+.social-icons a:hover {
+    background-color: #e00f37; /* CHANGED: Hover states follow branding red color */
+    scale: 1.1; /* Scales your social icons seamlessly by 10% on hover */
+}
+
+/* Column 4: Contact Coordinate Rules */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.4;
+}
+.footer-contact p i {
+    color: #e00f37; /* CHANGED: Content utility icons now use branding red color */
+    width: 16px;
+}
+
+/* ==========================================================================
+   FOOTER BOTTOM FRAMEBAR
+   ========================================================================== */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e1e6;
+    font-size: 0.85rem;
+    color: #777777;
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES (Hooks safely into your body class list check loop)
+   ========================================================================== */
+body.DarkModeOn .site-footer {
+    background-color: #121214;
+    color: #e1e1e6;
+    border-top-color: #23232a;
+}
+body.DarkModeOn .footer-column h3 {
+    color: #ffffff;
+}
+body.DarkModeOn .footer-logo span {
+    color: #ffffff; /* Swapped color to clear white contrast for logo dot accent in dark mode */
+}
+body.DarkModeOn .footer-text,
+body.DarkModeOn .footer-links ul li a,
+body.DarkModeOn .footer-contact p {
+    color: #aaaaaa;
+}
+body.DarkModeOn .footer-links ul li a:hover {
+    color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .social-icons a {
+    background-color: #23232a;
+    color: #ffffff;
+}
+body.DarkModeOn .social-icons a:hover {
+    background-color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .footer-bottom {
+    border-top-color: #23232a;
+    color: #777777;
+}
+@media (max-width: 768px) {
+    .footer-container {
+        /* Collapses grid down instantly to a clean single column list stack for phones */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .site-footer {
+        padding: 40px 20px 20px 20px;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 800px) {
+  
+    .nav-lists-items {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #000000;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        overflow: hidden;
+       
+    }
+
+    .nav-lists-items li {
+        margin: 0;
+    }
+
+    .nav-lists-items li a {
+        font-size: 22px;
+    }
+
+    /* JavaScript Toggle Class */
+    .nav-amination {
+        display: flex !important;
+        animation: navtransition 0.4s ease-out forwards;
+    }
+
+    @keyframes navtransition {
+        from {
+            width: 0%;
+            opacity: 0;
+        }
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    .ham-bars {
+        display: block;
+    }
+
+    .form-dark {
+        width: auto;
+    }
+}
+
+      </style>
+</head>
+<body>
+       <header>
+        <nav>
+            <div class="nav-bar">
+                <div class="logo"><img src="image/logo.png" alt=""></div>
+                <ul class="nav-lists-items">
+                    <li class="home-content"><a href="index.html">home</a></li>
+                    <li class="tour-content"><a href="tourcontentpage.html">tour</a></li>
+                    <li class="gallery-content"><a href="">gallery</a></li>
+                </ul>
+                <div class="form-dark">
+                <div class="login-content">
+                   <button class="login-icon"><i class="fa-solid fa-user"></i></button>
+                </div>
+                <div class="dark-mode">
+                     <button class="sun-icon"><i class="fa-solid fa-sun"></i></button>
+                </div>
+                <div class="ham-bars">
+                    <button class="bars"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+            </div>
+        </nav>
+        </header>
+
+        <section>
+            <div class="tour-list-details">
+        <div class="tour-list-tiltle">tour list</div>
+          
+      </div>
+        </section>
+
+        <footer class="site-footer">
+    <div class="footer-container">
+        
+        <!-- Column 1: Logo and Context -->
+        <div class="footer-column footer-brand">
+            <h2 class="footer-logo">ARIRANG<span>.</span></h2>
+            <p class="footer-text">
+                Join the historic global wave. Experience BTS live in stadiums worldwide on the spectacular Arirang World Tour.
+            </p>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div class="footer-column footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tour</a></li>
+                <li><a href="#">Gallery</a></li>
+                
+            </ul>
+        </div>
+
+        <!-- Column 3: Social Links -->
+        <div class="footer-column footer-socials">
+            <h3>Connect with Us</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Column 4: Address and Phone -->
+        <div class="footer-column footer-contact">
+            <h3>Contact Info</h3>
+            <p><i class="fa-solid fa-location-dot"></i> 1601 Jungang-ro, Goyang-si, South Korea</p>
+            <p><i class="fa-solid fa-phone"></i> +82 (02) 1234-5978</p>
+            <p><i class="fa-solid fa-envelope"></i> support@ariang.com</p>
+        </div>
+
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 ArirangTourwedsite. All rights reserved for ARMY.</p>
+    </div>
+</footer>
+
+
+
+        <script>
+            const loginfrom = document.querySelector(".login-icon");
+const darkmode = document.querySelector(".sun-icon");
+
+const barsbtn = document.querySelector(".bars");
+const NavListItems =  document.querySelector(".nav-lists-items");
+
+darkmode.addEventListener("click" , function() {
+    darkmode.classList.toggle("darkmodeanimation");
+ const wholecontent = document.body;
+    wholecontent.classList.toggle("DarkModeOn");
+     if (wholecontent.classList.contains("DarkModeOn")) {
+        darkmode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    } else {
+        darkmode.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    }
+});
+barsbtn.addEventListener("click" , function() {
+NavListItems.classList.toggle("nav-amination");
+});
+
+const tourlistdetails = document.querySelector(".tour-list-details");
+const tourlists = [
+  {
+    country: "Goyang, South Korea",
+    date: "April (9,11,12), 2026",
+    stadium: "Goyang Stadium"
+  },
+  {
+    country: "Tokyo, Japan",
+    date: "April (17,18), 2026",
+    stadium: "Tokyo Dome"
+  },
+  {
+    country: "Tampa, United States",
+    date: "April (25,26,28), 2026",
+    stadium: "Raymond James Stadium"
+  },
+  {
+    country: "El Paso, United States",
+    date: "May (2,3), 2026",
+    stadium: "Sun Bowl Stadium"
+  },
+  {
+    country: "Mexico City, Mexico",
+    date: "May (7,9,10), 2026",
+    stadium: "Estadio GNP Seguros"
+  },
+  {
+    country: "Stanford, United States",
+    date: "May (16,17,19), 2026",
+    stadium: "Stanford Stadium"
+  },
+  {
+    country: "Las Vegas, United States",
+    date: "May (23,24,27,28), 2026",
+    stadium: "Allegiant Stadium"
+  },
+  {
+    country: "Busan, South Korea",
+    date: "June (12,13), 2026",
+    stadium: "Busan Asiad Main Stadium"
+  },
+  {
+    country: "Madrid, Spain",
+    date: "June (26,27), 2026",
+    stadium: "Riyadh Air Metropolitano"
+  },
+  {
+    country: "Brussels, Belgium",
+    date: "July (1,2), 2026",
+    stadium: "King Baudouin Stadium"
+  },
+  {
+    country: "London, United Kingdom",
+    date: "July (6,7), 2026",
+    stadium: "Tottenham Hotspur Stadium"
+  },
+  {
+    country: "Munich, Germany",
+    date: "July (11,12), 2026",
+    stadium: "Allianz Arena"
+  },
+  {
+    country: "Paris, France",
+    date: "July (17,18), 2026",
+    stadium: "Stade de France"
+  },
+  {
+    country: "East Rutherford, United States",
+    date: "August (1,2), 2026",
+    stadium: "MetLife Stadium"
+  },
+  {
+    country: "Foxborough, United States",
+    date: "August (5,6), 2026",
+    stadium: "Gillette Stadium"
+  },
+  {
+    country: "Toronto, Canada",
+    date: "August (22,23), 2026",
+    stadium: "Rogers Stadium"
+  },
+  {
+    country: "Chicago, United States",
+    date: "August (27,28), 2026",
+    stadium: "Soldier Field"
+  },
+  {
+    country: "Los Angeles, United States",
+    date: "September (1,2,5,6), 2026",
+    stadium: "SoFi Stadium"
+  },
+  {
+    country: "Bogotá, Colombia",
+    date: "October (2,3), 2026",
+    stadium: "Estadio El Campín"
+  },
+  {
+    country: "Lima, Peru",
+    date: "October (7,9,10), 2026",
+    stadium: "Estadio San Marcos"
+  },
+  {
+    country: "Santiago, Chile",
+    date: "October (14,16,17), 2026",
+    stadium: "Estadio Nacional"
+  },
+  {
+    country: "Buenos Aires, Argentina",
+    date: "October (21,23,24), 2026",
+    stadium: "Estadio Único de La Plata"
+  },
+  {
+    country: "São Paulo, Brazil",
+    date: "October (28,30,31), 2026",
+    stadium: "Estádio MorumBIS"
+  },
+  {
+    country: "Kaohsiung, Taiwan",
+    date: "November (19,21,22), 2026",
+    stadium: "Kaohsiung National Stadium"
+  },
+  {
+    country: "Bangkok, Thailand",
+    date: "December (3,5,6), 2026",
+    stadium: "Rajamangala National Stadium"
+  },
+  {
+    country: "Kuala Lumpur, Malaysia",
+    date: "December (12,13), 2026",
+    stadium: "TM National Stadium"
+  },
+  {
+    country: "Singapore, Singapore",
+    date: "December (17,19,20,22), 2026",
+    stadium: "National Stadium"
+  },
+  {
+    country: "Jakarta, Indonesia",
+    date: "December (26,27,29), 2026",
+    stadium: "Gelora Bung Karno Stadium"
+  },
+  {
+    country: "Melbourne, Australia",
+    date: "February (10,12,13), 2027",
+    stadium: "Marvel Stadium"
+  },
+  {
+    country: "Sydney, Australia",
+    date: "February (20,21), 2027",
+    stadium: "Accor Stadium"
+  },
+  {
+    country: "Hong Kong, China",
+    date: "March (4,6,7), 2027",
+    stadium: "Kai Tak Stadium"
+  },
+  {
+    country: "Bulacan, Philippines",
+    date: "March (13,14), 2027",
+    stadium: "Philippine Sports Stadium"
+  }
+];
+
+
+tourlists.forEach(content => {
+   const contentcreatediv = document.createElement("div");
+contentcreatediv.innerHTML = `<div class = "tour-contents">
+<div class = "left-content">
+<div class = "stadium-name">${content.stadium}</div>
+<div class = "country-name">${content.country}</div>
+<div class = "date">${content.date}</div>
+</div>
+<div class = "right-content">
+<button class = "buy-ticket">buy ticket</button>
+</div>
+</div>`;
+tourlistdetails.appendChild(contentcreatediv)});
+        </script>
+</body>
+</html>
