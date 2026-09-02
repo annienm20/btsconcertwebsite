@@ -399,6 +399,7 @@ font-variant: normal;
   row-gap: 40px;   
   column-gap: 30px;
   margin: 40px 0px 60px 0px;
+
 }
 .bts-image{
     width: 100%;
@@ -430,7 +431,8 @@ height: 100%;
     padding: 10px;                       /* Set padding permanently */
     border: 2px solid transparent ;        /* Reserve border space so dimensions don't change */
     border-radius: 10px;
-    
+   width: 100%; 
+    opacity: 1;  
     /* Place transition on base class so it animates smoothly both in and out */
     transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -768,6 +770,33 @@ color: #e00f37;
   text-transform: uppercase;
   color: white;
   display: block;
+}
+/* ==================== TICKET MODAL OVERLAY POSITIONING ==================== */
+.ticket-modal {
+    position: fixed;            /* Forces the modal to stay locked on top of the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;              /* Places it above headers and nav bars */
+    
+    /* Reuses your sleek form overlay appearance options */
+    background-color: rgba(0, 0, 0, 0.85); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Perfectly spaces and centers the child modal content form box inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ==================== CHECKOUT BUTTON HOVER INTERACTION ==================== */
+.checkout-btn:hover {
+    background-color: #ffffff !important; /* Inverts background layer to pure white */
+    color: #ff1340 !important;            /* Changes text color to solid red for readability */
+    border: 1px solid #ff1340 !important; /* Locks structural border constraints */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);          /* Adds a slight hover lift effect */
 }
 
 .view-more1-btn:hover {
@@ -1190,3 +1219,4 @@ flex-direction: column;}
         margin-top: 30px;
     }
 }
+

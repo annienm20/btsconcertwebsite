@@ -203,6 +203,14 @@ header {
     z-index: 2; 
 }
 
+.checkout-btn:hover {
+    background-color: #ffffff !important; /* Inverts background layer to pure white */
+    color: #ff1340 !important;            /* Changes text color to solid red for readability */
+    border: 1px solid #ff1340 !important; /* Locks structural border constraints */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);          /* Adds a slight hover lift effect */
+}
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -310,7 +318,31 @@ header {
     font-size: 0.85rem;
     color: #777777;
 }
-
+.checkout-btn:hover {
+    background-color: #ffffff !important; /* Inverts background layer to pure white */
+    color: #ff1340 !important;            /* Changes text color to solid red for readability */
+    border: 1px solid #ff1340 !important; /* Locks structural border constraints */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);          /* Adds a slight hover lift effect */
+}
+.ticket-modal {
+    position: fixed;            /* Forces the modal to stay locked on top of the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;              /* Places it above headers and nav bars */
+    
+    /* Reuses your sleek form overlay appearance options */
+    background-color: rgba(0, 0, 0, 0.85); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Perfectly spaces and centers the child modal content form box inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* ==========================================================================
    DARK MODE OVERRIDES (Hooks safely into your body class list check loop)
    ========================================================================== */
@@ -714,6 +746,533 @@ contentcreatediv.innerHTML = `<div class = "tour-contents">
 </div>
 </div>`;
 tourlistdetails.appendChild(contentcreatediv)});
+
+const buyticket = document.querySelectorAll(".buy-ticket");
+
+buyticket.forEach((ticket, index) => {
+
+    ticket.addEventListener("click", function () {
+
+        // Get the correct tour
+        const selectedTour = tourlists[index];
+
+        // Create modal
+        const displayticket = document.createElement("div");
+        displayticket.className = "ticket-modal";
+
+        // STEP 1 - Ticket Details
+        displayticket.innerHTML = `
+            <div class="login-form-f" 
+                style="
+                    text-align: center;
+                    position: relative;
+                    background: #111;
+                    padding: 30px;
+                    border-radius: 12px;
+                    width: 400px;
+                    max-width: 90%;
+                    box-sizing: border-box;
+                "
+            >
+
+                <button 
+                    class="close-modal-btn"
+                    style="
+                        position: absolute;
+                        right: 15px;
+                        top: 15px;
+                        font-size: 26px;
+                        color: #ff1340;
+                        border: none;
+                        background: transparent;
+                        cursor: pointer;
+                    "
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <h2 style="
+                    font-size: 22px;
+                    margin-bottom: 15px;
+                    color: #ff1340;
+                ">
+                    Ticket Details
+                </h2>
+
+                <div style="text-align: left; margin-top: 15px;">
+
+                    <p style="margin: 8px 0; color: #fff;">
+                        <strong>Stadium:</strong> 
+                        ${selectedTour.stadium}
+                    </p>
+
+                    <p style="margin: 8px 0; color: #fff;">
+                        <strong>Location:</strong> 
+                        ${selectedTour.country}
+                    </p>
+
+                    <p style="margin: 8px 0; color: #fff;">
+                        <strong>Date:</strong> 
+                        ${selectedTour.date}
+                    </p>
+
+                </div>
+
+                <button 
+                    class="checkout-btn"
+                    style="
+                        margin-top: 20px;
+                        width: 100%;
+                        padding: 12px;
+                        background: #ff1340;
+                        color: white;
+                        border: 2px solid #ff1340;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 16px;
+                    "
+                >
+                    Proceed to Checkout
+                </button>
+
+            </div>
+        `;
+
+        // Add modal to body
+        document.body.appendChild(displayticket);
+
+
+        // CLOSE STEP 1
+        const closeBtn = displayticket.querySelector(".close-modal-btn");
+
+        closeBtn.addEventListener("click", () => {
+            displayticket.remove();
+        });
+
+
+        // CHECKOUT BUTTON
+        const checkoutBtn = displayticket.querySelector(".checkout-btn");
+
+        checkoutBtn.addEventListener("mouseenter", () => {
+            checkoutBtn.style.backgroundColor = "white";
+            checkoutBtn.style.color = "#ff1340";
+        });
+
+        checkoutBtn.addEventListener("mouseleave", () => {
+            checkoutBtn.style.backgroundColor = "#ff1340";
+            checkoutBtn.style.color = "white";
+        });
+
+
+        // STEP 2
+        checkoutBtn.addEventListener("click", function () {
+
+            displayticket.innerHTML = `
+
+                <div 
+                    class="login-form-h"
+                    style="
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        max-width: 550px;
+                        width: 95%;
+                        max-height: 85vh;
+                        overflow-y: auto;
+                        background: #111;
+                        padding: 30px 25px;
+                        border-radius: 12px;
+                        border: 2px solid #ff1340;
+                        box-shadow: 0 0 20px rgba(255,19,64,.4);
+                        box-sizing: border-box;
+                    "
+                >
+
+                    <button 
+                        class="close-modal-btn"
+                        style="
+                            position: absolute;
+                            right: 15px;
+                            top: 15px;
+                            font-size: 26px;
+                            color: #ff1340;
+                            border: none;
+                            background: transparent;
+                            cursor: pointer;
+                        "
+                    >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+
+                    <h2 style="
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                        color: #ff1340;
+                        text-align: center;
+                    ">
+                        Ticket Customisation
+                    </h2>
+
+
+                    <!-- TOUR INFORMATION -->
+
+                    <div style="
+                        background: #161616;
+                        padding: 15px;
+                        border-radius: 8px;
+                        margin-bottom: 15px;
+                    ">
+
+                        <p style="color:white; margin:5px 0;">
+                            <strong>Stadium:</strong> 
+                            ${selectedTour.stadium}
+                        </p>
+
+                        <p style="color:white; margin:5px 0;">
+                            <strong>Location:</strong> 
+                            ${selectedTour.country}
+                        </p>
+
+                        <p style="color:white; margin:5px 0;">
+                            <strong>Available Dates:</strong> 
+                            ${selectedTour.date}
+                        </p>
+
+                    </div>
+
+
+                    <form 
+                        id="checkout-form-wizard"
+                        style="
+                            display:flex;
+                            flex-direction:column;
+                            gap:15px;
+                        "
+                    >
+
+                        <!-- DATE -->
+
+                        <div>
+
+                            <label style="
+                                display:block;
+                                margin-bottom:5px;
+                                font-weight:bold;
+                                color:#fff;
+                                font-size:14px;
+                            ">
+                                Select Tour Attendance Date
+                            </label>
+
+                            <select 
+                                id="user-date"
+                                required
+                                style="
+                                    width:100%;
+                                    padding:12px;
+                                    background:#1b1b1b;
+                                    color:#fff;
+                                    border:2px solid #333;
+                                    border-radius:8px;
+                                "
+                            >
+
+                                <option value="" disabled selected>
+                                    Choose your show date...
+                                </option>
+
+                                <option value="Night 1">
+                                    First Scheduled Show - ${selectedTour.date}
+                                </option>
+
+                                <option value="Night 2">
+                                    Alternative Attendance Slot
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TIER + QUANTITY -->
+
+                        <div style="
+                            display:grid;
+                            grid-template-columns:1fr 1fr;
+                            gap:15px;
+                        ">
+
+                            <div>
+
+                                <label style="
+                                    display:block;
+                                    margin-bottom:5px;
+                                    font-weight:bold;
+                                    color:#fff;
+                                ">
+                                    Seat Category Tier
+                                </label>
+
+                                <select 
+                                    id="seat-tier"
+                                    required
+                                    style="
+                                        width:100%;
+                                        padding:12px;
+                                        background:#1b1b1b;
+                                        color:#fff;
+                                        border:2px solid #333;
+                                        border-radius:8px;
+                                    "
+                                >
+
+                                    <option value="General Admission">
+                                        General Admission
+                                    </option>
+
+                                    <option value="VIP Standing Arena">
+                                        VIP Standing Arena
+                                    </option>
+
+                                    <option value="Premium Reserved Tier">
+                                        VIP Premium Soundcheck
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div>
+
+                                <label style="
+                                    display:block;
+                                    margin-bottom:5px;
+                                    font-weight:bold;
+                                    color:#fff;
+                                ">
+                                    Ticket Quantity (Max 4)
+                                </label>
+
+                                <input 
+                                    type="number"
+                                    id="ticket-qty"
+                                    min="1"
+                                    max="4"
+                                    value="1"
+                                    required
+                                    style="
+                                        width:100%;
+                                        padding:12px;
+                                        background:#1b1b1b;
+                                        color:#fff;
+                                        border:2px solid #333;
+                                        border-radius:8px;
+                                        box-sizing:border-box;
+                                    "
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SEAT -->
+
+                        <div style="
+                            background:#161616;
+                            padding:12px;
+                            border-radius:8px;
+                            text-align:center;
+                            border:1px dashed #444;
+                        ">
+
+                            <span style="
+                                font-size:13px;
+                                color:#888;
+                                display:block;
+                                margin-bottom:4px;
+                            ">
+                                Assigned Seat
+                            </span>
+
+                            <strong 
+                                id="seat-numbers-display"
+                                style="
+                                    color:#ff1340;
+                                    font-size:16px;
+                                "
+                            >
+                                ZONE-A | ROW-07 (AUTO-ALLOCATED)
+                            </strong>
+
+                        </div>
+
+
+                        <hr style="
+                            border:0;
+                            height:1px;
+                            background:#333;
+                            width:100%;
+                        ">
+
+
+                        <!-- PAYMENT -->
+
+                        <div>
+
+                            <label style="
+                                display:block;
+                                margin-bottom:8px;
+                                font-weight:bold;
+                                color:#ff1340;
+                            ">
+                                Payment Method
+                            </label>
+
+
+                            <div style="
+                                display:flex;
+                                gap:10px;
+                                margin-bottom:10px;
+                            ">
+
+                                <label style="
+                                    flex:1;
+                                    background:#1b1b1b;
+                                    padding:10px;
+                                    border-radius:6px;
+                                    color:#fff;
+                                ">
+
+                                    <input 
+                                        type="radio"
+                                        name="pay-method"
+                                        value="Card"
+                                        checked
+                                    >
+
+                                    Credit Card
+
+                                </label>
+
+
+                                <label style="
+                                    flex:1;
+                                    background:#1b1b1b;
+                                    padding:10px;
+                                    border-radius:6px;
+                                    color:#fff;
+                                ">
+
+                                    <input 
+                                        type="radio"
+                                        name="pay-method"
+                                        value="UPI/Wallet"
+                                    >
+
+                                    Mobile Wallet
+
+                                </label>
+
+                            </div>
+
+
+                            <input 
+                                type="text"
+                                placeholder="16-Digit Card Number"
+                                maxlength="19"
+                                style="
+                                    width:100%;
+                                    padding:12px;
+                                    background:#1b1b1b;
+                                    color:#fff;
+                                    border:2px solid #333;
+                                    border-radius:8px;
+                                    box-sizing:border-box;
+                                "
+                            >
+
+                        </div>
+
+
+                        <!-- FINAL BUTTON -->
+
+                        <button 
+                            type="submit"
+                            class="final-book-btn"
+                            style="
+                                width:100%;
+                                padding:14px;
+                                margin-top:10px;
+                                background:#ff1340;
+                                color:white;
+                                border:none;
+                                border-radius:8px;
+                                font-size:18px;
+                                font-weight:bold;
+                                cursor:pointer;
+                            "
+                        >
+                            Finalize & Purchase Tickets
+                        </button>
+
+                    </form>
+
+                </div>
+            `;
+
+
+            // CLOSE STEP 2
+
+            const newCloseBtn =
+                displayticket.querySelector(".close-modal-btn");
+
+            newCloseBtn.addEventListener("click", () => {
+                displayticket.remove();
+            });
+
+
+            // FINAL FORM
+
+            const finalForm =
+                displayticket.querySelector("#checkout-form-wizard");
+
+            finalForm.addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                const selectedDate =
+                    displayticket.querySelector("#user-date").value;
+
+                const seatTier =
+                    displayticket.querySelector("#seat-tier").value;
+
+                const quantity =
+                    displayticket.querySelector("#ticket-qty").value;
+
+                alert(
+                    `Tickets Booked Successfully!\n\n` +
+                    `Stadium: ${selectedTour.stadium}\n` +
+                    `Location: ${selectedTour.country}\n` +
+                    `Date: ${selectedDate}\n` +
+                    `Tier: ${seatTier}\n` +
+                    `Quantity: ${quantity}`
+                );
+
+                displayticket.remove();
+
+            });
+
+        });
+
+    });
+
+});
+
+
         </script>
 </body>
 </html>
