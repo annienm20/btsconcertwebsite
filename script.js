@@ -113,8 +113,7 @@ const i = 0;
  btsMembersdetail.forEach(function(member, index)
  {
     const member_box = document.createElement("div");
-     member_box.className = "member-card animate__animated animate__zoomIn  ";
-     member_box.style.animationDelay = `${index * 1}s`;
+     member_box.className = "member-card ";
     member_box.innerHTML = `<div class = "member-box-body ">
     <div class = "bts-image">
     <img src ="${member.image}"></div>

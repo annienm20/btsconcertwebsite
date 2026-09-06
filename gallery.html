@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+       <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: #000000;
+    color: #ff1340;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+   
+    z-index: 100;
+}
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 6px 14px;
+}
+.logo {
+    max-width: 170px; 
+    height: 60px; 
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.nav-lists-items {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+}
+
+.nav-lists-items li a {
+    text-decoration: none;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.nav-lists-items li a:active,
+.nav-lists-items li a:hover {
+    color: #ff1340;  
+}
+
+.form-dark {
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+.login-icon, .sun-icon, .bars {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.ham-bars {
+    display: none;
+}
+
+.login-icon:active, .sun-icon:active, .bars:active {
+    border: 1px solid #ff1340;
+    color: #ff1340;
+    transform: scale(1.1);
+}
+.darkmodeanimation {
+    transform: rotate(360deg);
+    transition: transform 1s ease-in-out;
+}
+
+.DarkModeOn {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+.form-content,
+.signup-content,
+.welcome-body {
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+}
+.login-form,
+.signup-container {
+    width: 90%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: absolute;
+    background: #111;
+    padding: 30px 25px;
+    border-radius: 12px;
+    border: 2px solid #ff1340;
+    box-shadow: 0 0 20px rgba(255, 19, 64, 0.4);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+/* Scrollbar Styling for Short Screens */
+.login-form::-webkit-scrollbar,
+.signup-container::-webkit-scrollbar {
+    width: 6px;
+}
+.login-form::-webkit-scrollbar-thumb,
+.signup-container::-webkit-scrollbar-thumb {
+    background: #ff1340;
+    border-radius: 10px;
+}
+
+/* Modal Headers */
+.login-form h2 {
+    color: #ff1340;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.signup-header {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+}
+.login-form input[type="email"],
+.login-form input[type="password"],
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #1b1b1b;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.login-form input:focus,
+.signup-form input:focus {
+    border-color: #ff1340;
+    box-shadow: 0 0 10px #ff1340;
+}
+
+label {
+    color: white;
+    font-size: 14px;
+}
+.login-form a {
+    color: #ff1340;
+    text-decoration: none;
+    float: right;
+    font-size: 14px;
+}
+
+.login-form a:hover,
+.signup-footer p a:hover,
+.terms a:hover {
+    text-decoration: underline;
+}
+.login-form button[type="submit"],
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #ff1340;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+.login-form button[type="submit"]:hover,
+.submit-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 19, 64, 0.5);
+    background-color: #e00f37;
+}
+
+.login-form button[type="submit"]:active,
+.submit-btn:active {
+    transform: scale(0.98);
+}
+.login-form p,
+.signup-footer p {
+    color: #fff;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-form p a,
+.signup-footer p a {
+    color: #ff1340;
+    font-weight: bold;
+    float: none;
+    font-size: 14px;
+}
+
+.form-actions {
+    margin-top: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+}
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888888;
+    cursor: pointer;
+}
+
+.terms input[type="checkbox"] {
+    accent-color: #ff1340;
+    cursor: pointer;
+}
+
+.terms a {
+    color: #ff1340;
+    text-decoration: none;
+}
+
+.closebtn,
+.closebtn-1,
+.closebtn-2 {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 26px;
+    color: #ff1340;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.closebtn:hover,
+.closebtn-1:hover,
+.closebtn-2:hover {
+    color: #ffffff;
+}
+/* Welcome Overlay Text */
+.welcome-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcometext {
+    width: 90%;
+    max-width: 500px;
+    color: #ff1340;
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+
+/* FIT IMAGE INSIDE DIV: Universal rule for all slider images */
+
+
+
+
+.site-footer {
+    background-color: black;
+    color: #333333;
+    padding: 60px 20px 20px 20px;
+    font-family: sans-serif;
+    border-top: 1px solid #e1e1e6;
+    
+    /* Forces footer layer to stack safely over your fixed background photo */
+    z-index: 2; 
+    width: 100%;
+}
+
+.checkout-btn:hover {
+    background-color: #ffffff !important; /* Inverts background layer to pure white */
+    color: #ff1340 !important;            /* Changes text color to solid red for readability */
+    border: 1px solid #ff1340 !important; /* Locks structural border constraints */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);          /* Adds a slight hover lift effect */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Perfectly splits your 4 columns using an asymmetrical tracking metric */
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+    gap: 40px;
+}
+
+/* Header Text Styling for Footer Sub-sections */
+.footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   COLUMN UNIQUE PROPERTY DEFINITIONS
+   ========================================================================== */
+
+/* Column 1: Brand Content Context Wrapper */
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #e00f37; /* CHANGED: Replaced purple with tour branding red color */
+}
+.footer-logo span {
+    color: #111111; /* Swapped color to dark contrast for logo dot accent */
+}
+.footer-text {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #555555;
+}
+
+/* Column 2: Navigation Links Layout Alignment */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+.footer-links ul li a {
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+.footer-links ul li a:hover {
+    color: #e00f37; /* CHANGED: Hover states follow branding red color */
+}
+
+/* Column 3: Social Media Icon Matrix Blocks */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    color: #ffffff;
+    background-color: #333333;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    /* Smooth translation timeline for your scaling configurations */
+    transition: all 0.3s ease; 
+}
+.social-icons a:hover {
+    background-color: #e00f37; /* CHANGED: Hover states follow branding red color */
+    scale: 1.1; /* Scales your social icons seamlessly by 10% on hover */
+}
+
+/* Column 4: Contact Coordinate Rules */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.4;
+}
+.footer-contact p i {
+    color: #e00f37; /* CHANGED: Content utility icons now use branding red color */
+    width: 16px;
+}
+
+/* ==========================================================================
+   FOOTER BOTTOM FRAMEBAR
+   ========================================================================== */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e1e6;
+    font-size: 0.85rem;
+    color: #777777;
+}
+
+
+/* ==========================================================================
+   DARK MODE OVERRIDES (Hooks safely into your body class list check loop)
+   ========================================================================== */
+body.DarkModeOn .site-footer {
+    background-color: #121214;
+    color: #e1e1e6;
+    border-top-color: #23232a;
+}
+body.DarkModeOn .footer-column h3 {
+    color: #ffffff;
+}
+body.DarkModeOn .footer-logo span {
+    color: #ffffff; /* Swapped color to clear white contrast for logo dot accent in dark mode */
+}
+body.DarkModeOn .footer-text,
+body.DarkModeOn .footer-links ul li a,
+body.DarkModeOn .footer-contact p {
+    color: #aaaaaa;
+}
+body.DarkModeOn .footer-links ul li a:hover {
+    color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .social-icons a {
+    background-color: #23232a;
+    color: #ffffff;
+}
+body.DarkModeOn .social-icons a:hover {
+    background-color: #e00f37; /* Stays consistent with branding color accent choice */
+}
+body.DarkModeOn .footer-bottom {
+    border-top-color: #23232a;
+    color: #777777;
+}
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 12px;
+    padding: 12px;
+    margin-top: 90px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+  
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 35px;
+    color: #ff1340;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: #ffffff;
+transform: scale(1.2);}
+/* Size Variations for Desktop */
+@media (min-width: 600px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    
+    .gallery-item.tall {
+        grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 599px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+        gap: 8px;
+    }
+    
+    /* Reset spans so images scale fitly on small screens */
+    .gallery-item.tall, 
+    .gallery-item.wide {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+}
+@media (max-width: 768px) {
+    .footer-container {
+        /* Collapses grid down instantly to a clean single column list stack for phones */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .site-footer {
+        padding: 40px 20px 20px 20px;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 800px) {
+  
+    .nav-lists-items {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #000000;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        overflow: hidden;
+       
+    }
+
+    .nav-lists-items li {
+        margin: 0;
+    }
+
+    .nav-lists-items li a {
+        font-size: 22px;
+    }
+
+    /* JavaScript Toggle Class */
+    .nav-amination {
+        display: flex !important;
+        animation: navtransition 0.4s ease-out forwards;
+    }
+
+    @keyframes navtransition {
+        from {
+            width: 0%;
+            opacity: 0;
+        }
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    .ham-bars {
+        display: block;
+    }
+
+    .form-dark {
+        width: auto;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .login-form,
+    .signup-container {
+        width: 92%;
+        padding: 20px 15px;
+    }
+
+    .login-form h2,
+    .signup-header,
+    .welcometext {
+        font-size: 22px;
+    }
+
+    label,
+    .login-form label,
+    .signup-footer p,
+    .signup-footer p a,
+    .login-form p,
+    .login-form a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        /* Collapses grid down instantly to a clean single column list stack for phones */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .site-footer {
+        padding: 40px 20px 20px 20px;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+     <header>
+        <nav>
+            <div class="nav-bar">
+                <div class="logo"><img src="image/logo.png" alt=""></div>
+                <ul class="nav-lists-items">
+                    <li class="home-content"><a href="index.html">home</a></li>
+                    <li class="tour-content"><a href="tourcontentpage.html">tour</a></li>
+                    <li class="gallery-content"><a href="">gallery</a></li>
+                </ul>
+                <div class="form-dark">
+                <div class="login-content">
+                   <button class="login-icon"><i class="fa-solid fa-user"></i></button>
+                </div>
+                <div class="dark-mode">
+                     <button class="sun-icon"><i class="fa-solid fa-sun"></i></button>
+                </div>
+                <div class="ham-bars">
+                    <button class="bars"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+    <section class ="form-content">
+        <button class="closebtn"><i class="fa-solid fa-xmark"></i></button>
+        <form class="login-form">
+    <h2>Login</h2>
+
+    <input type="email" placeholder="Enter your email" required>
+
+    <input type="password" placeholder="Enter your password" required>
+
+    <label>
+        <input type="checkbox">
+        Remember Me
+    </label>
+
+    <a href="#">Forgot Password?</a>
+
+    <button type="submit" class = "submit-btn">Login</button>
+
+    <p>Don't have an account? <a href="#" class="OpenSignUp">Sign Up</a></p>
+</form>
+    </section>
+
+    <section class="signup-content">
+        <button class="closebtn-2"><i class="fa-solid fa-xmark"></i></button>
+        <div class="signup-container">
+    <div class="signup-header">
+      <h2>Create an Account</h2>
+    </div>
+
+    <form class="signup-form">
+      <div class="input-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="John Doe" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="name@example.com" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="At least 8 characters" required>
+      </div>
+
+      <div class="input-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="••••••••" required>
+      </div>
+
+      <div class="form-actions">
+        <label class="terms">
+          <input type="checkbox" required>
+          <span>I agree to the <a href="#">Terms & Conditions</a></span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+
+    <div class="signup-footer">
+      <p>Already have an account? <a href="#" class="OpenSignIn">Sign in</a></p>
+    </div>
+  </div>
+    </section>
+   
+    <section class="gallery-content">
+        <div class="gallery-container"></div>
+    </section>
+   <div class="image-modal">
+        <button class="close-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+        <img src="" alt="Full View">
+    </div>
+       <footer class="site-footer">
+    <div class="footer-container">
+        
+        <!-- Column 1: Logo and Context -->
+        <div class="footer-column footer-brand">
+            <h2 class="footer-logo">ARIRANG<span>.</span></h2>
+            <p class="footer-text">
+                Join the historic global wave. Experience BTS live in stadiums worldwide on the spectacular Arirang World Tour.
+            </p>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div class="footer-column footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tour</a></li>
+                <li><a href="#">Gallery</a></li>
+                
+            </ul>
+        </div>
+
+        <!-- Column 3: Social Links -->
+        <div class="footer-column footer-socials">
+            <h3>Connect with Us</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Column 4: Address and Phone -->
+        <div class="footer-column footer-contact">
+            <h3>Contact Info</h3>
+            <p><i class="fa-solid fa-location-dot"></i> 1601 Jungang-ro, Goyang-si, South Korea</p>
+            <p><i class="fa-solid fa-phone"></i> +82 (02) 1234-5978</p>
+            <p><i class="fa-solid fa-envelope"></i> support@ariang.com</p>
+        </div>
+
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 ArirangTourwedsite. All rights reserved for ARMY.</p>
+    </div>
+    </footer>
+    <script>
+
+
+const loginfrom = document.querySelector(".login-icon");
+const darkmode = document.querySelector(".sun-icon");
+
+const barsbtn = document.querySelector(".bars");
+const NavListItems =  document.querySelector(".nav-lists-items");
+
+darkmode.addEventListener("click" , function() {
+    darkmode.classList.toggle("darkmodeanimation");
+ const wholecontent = document.body;
+    wholecontent.classList.toggle("DarkModeOn");
+     if (wholecontent.classList.contains("DarkModeOn")) {
+        darkmode.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    } else {
+        darkmode.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    }
+});
+barsbtn.addEventListener("click" , function() {
+NavListItems.classList.toggle("nav-amination");
+});
+//form//
+const SignInbtn = document.querySelector(".login-content");
+const SignInForm =  document.querySelector(".form-content");
+const CloseBtn = document.querySelector(".closebtn");
+const SubmitBtn = document.querySelector(".submit-btn");
+const SignUpForm = document.querySelector(".signup-content");
+const CloseBtn2 = document.querySelector(".closebtn-2");
+const opensignup =  document.querySelector(".OpenSignUp");
+const opensignin =  document.querySelector(".OpenSignIn");
+
+opensignin.addEventListener("click" , () => {
+SignUpForm.style.display = "none";
+    SignInForm.style.display = "block";
+});
+opensignup.addEventListener("click" , () => {
+SignInForm.style.display = "none";
+    SignUpForm.style.display = "block";
+});
+SignInbtn.addEventListener("click" , () => {
+SignInForm.style.display = "block";
+});
+CloseBtn.addEventListener("click", () => {
+SignInForm.style.display = "none";
+});
+CloseBtn2.addEventListener("click", () => {
+SignUpForm.style.display = "none";
+});
+SubmitBtn.addEventListener("click", function() {
+const welcome = document.createElement("div");
+welcome.innerHTML = `<div class = "welcome-body">
+ <button class="closebtn-1"><i class="fa-solid fa-xmark"></i></button>
+<div class = "welcometext" style = "color : #ff1340;">welcome Army ,  
+let join tour with us </div>
+</div>`;
+document.body.append(welcome);
+SignInForm.style.display = "none";
+welcome.style.display = "block";
+const closeWelcome = welcome.querySelector(".closebtn-1");
+closeWelcome.addEventListener("click", () => {
+welcome.style.display = "none";
+});
+});
+
+const gallerycontainer = document.querySelector(".gallery-container");
+const gallerysimages = [
+    {
+        img : "image/image1.jpg"
+    },
+     {
+        img : "image/image2.jpg"
+    }, {
+        img : "image/image3.jpg"
+    }, {
+        img : "image/image4.jpg"
+    } ,{
+        img : "image/image5.jpg"
+    }, {
+        img : "image/image6.jpg"
+    } ,{
+        img : "image/image7.jpg"
+    } ,{
+        img : "image/image8.jpg"
+    } ,{
+        img : "image/image9.jpg"
+    } ,{
+        img : "image/sliderimage-1jpg.jpg"
+    }
+    ,{
+        img : "image/sliderimage-2.jpg"
+    }
+    ,{
+        img : "image/sliderimage-3.jpg"
+    }
+    ,{
+        img : "image/sliderimage-4.jpg"
+    }
+    ,{
+        img : "image/images-11.jpg"
+    }
+     ,{
+        img : "image/image-10.jpg"
+    }
+    ,{
+        img : "image/image-12.jpg"
+    }
+];
+gallerycontainer.innerHTML = gallerysimages.map((item, index) => {
+    // Add specific classes to vary image sizes visually
+    let extraClass = "";
+    if (index % 3 === 0) extraClass = "tall";
+    else if (index % 5 === 0) extraClass = "wide";
+
+    return `
+        <div class="gallery-item ${extraClass}">
+            <img src="${item.img}" alt="Gallery Image ${index + 1}" loading="lazy">
+        </div>
+    `;
+}).join('');
+// LIGHTBOX MODAL FUNCTIONALITY
+const imageModal = document.querySelector(".image-modal");
+const modalImg = imageModal.querySelector("img");
+const closeModalBtn = document.querySelector(".close-modal-btn");
+
+// Open modal on clicking any gallery item
+gallerycontainer.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", () => {
+        modalImg.src = img.src;
+        imageModal.style.display = "flex";
+    });
+});
+
+// Close modal via close button
+closeModalBtn.addEventListener("click", () => {
+    imageModal.style.display = "none";
+});
+
+// Close modal when clicking outside the image
+imageModal.addEventListener("click", (e) => {
+    if (e.target === imageModal) {
+        imageModal.style.display = "none";
+    }
+});
+    </script>
+</body>
+</html>
